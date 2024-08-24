@@ -6,14 +6,20 @@ import { db } from './firebaseConfig';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 
-
+/**
+ * Modal Card
+ * tassks = all existing tasks
+ * @return {*} 
+ * isModalOpen = boolean
+ * visibleDescription = string
+ */
 const Card = () => {
   const [tasks, setTasks] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [visibleDescriptionId, setVisibleDescriptionId] = useState(null); // Estado para controlar la visibilidad de la descripción
+  const [visibleDescriptionId, setVisibleDescriptionId] = useState(null); 
 
 
-  // Obtener las tareas desde Firebase
+  // Obtain tasks from firebase database
   useEffect(() => {
     const fetchTasks = async () => {
       const tasksCollection = collection(db, 'tasks');
@@ -33,32 +39,36 @@ const Card = () => {
 
   const handleStatusChange = async (id, currentStatus) => {
     try {
-      // Actualizar el estado localmente
+      // Update local status
       setTasks(tasks.map(task =>
         task.id === id
           ? { ...task, status: !currentStatus }
           : task
       ));
  
-      // Actualizar el estado en Firebase
+      // Update firebase status
       const taskRef = doc(db, 'tasks', id);
       await updateDoc(taskRef, {
         status: !currentStatus,
       });
     } catch (error) {
       console.error("Error updating document: ", error);
-      alert("There was an error updating the task status.");
+      alert("There was an error updating the task status."); // error handling
     }
   };
  
 
-
-  const handleDelete = async (id) => {
+/**
+ * Deletes tasks
+ * and has error handling
+ * @param {*} id
+ */
+const handleDelete = async (id) => {
     try {
-      // Elimina la tarea de Firebase Firestore
+      // Delete task from firebase
       await deleteDoc(doc(db, 'tasks', id));
  
-      // Luego, elimina la tarea del estado local
+      // Delete task locally
       setTasks(tasks.filter(task => task.id !== id));
     } catch (error) {
       console.error('Error deleting document: ', error);

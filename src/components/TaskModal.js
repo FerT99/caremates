@@ -13,7 +13,7 @@ const TaskModal = ({ isOpen, onClose, onSave }) => {
 
   useEffect(() => {
     if (isOpen) {
-      // Restablecer los campos del modal cuando se abre
+      // Empty all spaces when reopening the modal
       setTaskName('');
       setTaskStatus('Incomplete');
       setTaskDescription('');
@@ -36,8 +36,8 @@ const TaskModal = ({ isOpen, onClose, onSave }) => {
         date: currentDate,
       };
       const docRef = await addDoc(collection(db, 'tasks'), newTask);
-      onSave({ id: docRef.id, ...newTask }); // Pasar la nueva tarea a la función onSave
-      onClose(); // Cerrar el modal después de guardar
+      onSave({ id: docRef.id, ...newTask }); 
+      onClose(); // Closing the modal after saving
     } catch (e) {
       console.error("Error adding document: ", e);
       alert('There was an error saving the task.');

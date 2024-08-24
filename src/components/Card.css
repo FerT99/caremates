@@ -35,9 +35,9 @@
     color: #555;
   }
   
-  
+  /* Tasks status */
   .status-button.complete {
-    background-color: #4caf50; /* Verde para tareas completadas */
+    background-color: #4caf50; 
     color: white;
     border: none;
     padding: 5px 10px;
@@ -46,14 +46,12 @@
   
   
   .status-button.incomplete {
-    background-color: #f44336; /* Rojo para tareas incompletas */
+    background-color: #f44336; 
     color: white;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
   }
-  
-  
   
   
   .delete-button {
@@ -84,10 +82,7 @@
     z-index: 1000;
   }
   
-  
-  
-  
-  /* Flecha para abrir/cerrar la descripción */
+/* Description´s arrow in tasks */
   .arrow {
     display: inline-block;
     margin-right: 8px;
@@ -100,7 +95,7 @@
   }
   
   
-  /* Estilo para la descripción */
+  /* Style for tasks */
   .task-description {
     font-family: 'Arial',
     sans-serif;
@@ -110,19 +105,16 @@
     margin: 0;
   }
   
-  
-  /* Cambiar cursor a pointer al pasar sobre una fila de tarea */
   .task-row {
     cursor: pointer;
   }
   
   
   .task-row:hover {
-    background-color: #f9f9f9; /* Cambia ligeramente el fondo al hacer hover */
+    background-color: #f9f9f9; 
   }
   
   
-  /* Estilos de otros botones */
   .status-button {
     cursor: pointer;
   }
